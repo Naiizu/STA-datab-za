@@ -1,0 +1,58 @@
+// DATABÁZA pre autorizacie.php
+
+CREATE TABLE `autorizacie` (
+	`id` INT(4) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
+	`typ` VARCHAR(255) NOT NULL COLLATE 'utf8_general_ci',
+	`ziadatel` VARCHAR(255) NOT NULL COLLATE 'utf8_general_ci',
+	`datum` DATE NOT NULL DEFAULT current_timestamp(),
+	`meno` VARCHAR(255) NOT NULL COLLATE 'utf8_general_ci',
+	`id_clena` INT(4) UNSIGNED ZEROFILL NOT NULL,
+	`vec1` VARCHAR(255) NOT NULL COLLATE 'utf8_general_ci',
+	`vec2` VARCHAR(255) NOT NULL COLLATE 'utf8_general_ci',
+	`status` VARCHAR(255) NOT NULL COLLATE 'utf8_general_ci',
+	`autorizoval` VARCHAR(255) NOT NULL COLLATE 'utf8_general_ci',
+	UNIQUE INDEX `id` (`id`) USING BTREE
+)
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB
+;
+
+// DATABÁZA pre clenovia.php, klub.php, sutaz.php,
+
+CREATE TABLE `clenovia` (
+	`id` INT(4) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
+	`klub_id` INT(4) UNSIGNED ZEROFILL NOT NULL,
+	`Meno` VARCHAR(255) NOT NULL COLLATE 'utf8_general_ci',
+	`Priezvisko` VARCHAR(255) NOT NULL COLLATE 'utf8_general_ci',
+	`datum_narodenia` VARCHAR(255) NOT NULL COLLATE 'utf8_general_ci',
+	`technicky_stupen` VARCHAR(255) NOT NULL COLLATE 'utf8_general_ci',
+	`CreationDate` DATE NOT NULL DEFAULT current_timestamp(),
+	`UpdationDate` DATE NOT NULL,
+	`autorizaciaStatus` VARCHAR(255) NOT NULL DEFAULT 'Overený' COLLATE 'utf8_general_ci',
+	`zmenil` VARCHAR(255) NOT NULL DEFAULT '-----' COLLATE 'utf8_general_ci',
+	PRIMARY KEY (`id`) USING BTREE
+)
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=29
+;
+
+// DATABÁZA pre administratori.php
+
+CREATE TABLE `tbladmin` (
+	`klub` VARCHAR(255) NOT NULL COLLATE 'utf8_general_ci',
+	`id` INT(4) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
+	`AID` INT(11) NOT NULL DEFAULT '1',
+	`AdminUserName` VARCHAR(255) NOT NULL COLLATE 'utf8_general_ci',
+	`AdminPassword` VARCHAR(255) NOT NULL COLLATE 'utf8_general_ci',
+	`AdminEmailId` VARCHAR(255) NOT NULL COLLATE 'utf8_general_ci',
+	`CreationDate` TIMESTAMP NOT NULL DEFAULT current_timestamp(),
+	`UpdationDate` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
+	PRIMARY KEY (`id`) USING BTREE
+)
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=8
+;
+
+
